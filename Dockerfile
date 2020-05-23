@@ -6,10 +6,6 @@ ENV MONITOR_GIT_REF=
 
 VOLUME ["/config"]
 
-RUN mkdir -p /var/log/supervisor
-
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
 # Cross compile
 COPY qemu-arm-static /usr/bin/qemu-arm-static
 
