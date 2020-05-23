@@ -21,5 +21,4 @@ RUN scripts/setup_docker_prereqs
 
 WORKDIR /monitor
 
-# CMD ["/run.sh"]
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["/run.sh"]

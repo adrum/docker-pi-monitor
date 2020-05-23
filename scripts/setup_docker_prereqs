@@ -18,9 +18,6 @@ PACKAGES=(
   bluez-hcidump
   blueman
   bc
-  supervisor
-  python-pip
-  python-setuptools
 )
 
 # Required debian packages for building dependencies
@@ -32,11 +29,9 @@ PACKAGES_DEV=(
 # Install packages
 apt-get update
 apt-get install -y --no-install-recommends ${PACKAGES[@]} ${PACKAGES_DEV[@]}
-pip install supervisor-stdout
 
 scripts/mosquitto
 scripts/monitor
-
 
 # Remove packages
 apt-get remove -y --purge ${PACKAGES_DEV[@]}
