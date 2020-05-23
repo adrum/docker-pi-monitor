@@ -4,6 +4,9 @@ services:
     image: adrum/docker-pi-monitor
     network_mode: host
     restart: always
+    environment:
+      - MONITOR_GIT_REF=master
+      - MONITOR_FLAGS=-x -b -t -a -d
     volumes:
-        - /dev:/dev
-        - ./config:/config
+      - /dev:/dev
+      - ./config:/config

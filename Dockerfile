@@ -1,14 +1,14 @@
 FROM resin/rpi-raspbian:stretch
 
-ENV MONITOR_OPTIONS=
+ENV MONITOR_FLAGS=
 
 ENV MONITOR_GIT_REF=
 
 VOLUME ["/config"]
 
-WORKDIR /monitor
+RUN mkdir -p /var/log/supervisor
 
-CMD ["/run.sh"]
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Cross compile
 COPY qemu-arm-static /usr/bin/qemu-arm-static
@@ -18,3 +18,8 @@ COPY scripts/ scripts/
 COPY run.sh /run.sh
 
 RUN scripts/setup_docker_prereqs
+
+WORKDIR /monitor
+
+# CMD ["/run.sh"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
