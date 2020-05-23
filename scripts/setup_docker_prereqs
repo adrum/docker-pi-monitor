@@ -1,0 +1,42 @@
+#!/bin/bash
+# Install requirements and build dependencies for Home Assistant in Docker.
+
+# Stop on errors
+set -e
+
+# Required debian packages for running hass or components
+PACKAGES=(
+  git
+  # l2ping
+  wget
+  curl
+  apt-transport-https
+  ca-certificates
+  pi-bluetooth
+  bluez
+  bluez-firmware
+  bluez-hcidump
+  blueman
+  bc
+)
+
+# Required debian packages for building dependencies
+PACKAGES_DEV=(
+  gnupg2
+  software-properties-common
+)
+
+# Install packages
+apt-get update
+apt-get install -y --no-install-recommends ${PACKAGES[@]} ${PACKAGES_DEV[@]}
+
+scripts/mosquitto
+scripts/monitor
+
+# Remove packages
+apt-get remove -y --purge ${PACKAGES_DEV[@]}
+apt-get -y --purge autoremove
+
+# Cleanup
+apt-get clean
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

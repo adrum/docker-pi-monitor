@@ -1,0 +1,9 @@
+version: '3'
+services:
+  monitor:
+    image: adrum/docker-pi-monitor
+    network_mode: host
+    restart: always
+    volumes:
+        - /dev:/dev
+        - ./config:/config

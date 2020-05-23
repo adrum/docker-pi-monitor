@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Stop on errors
+set -e
+
+#clone this repo
+cd /
+git clone git://github.com/andrewjfreyer/monitor
+
+#enter monitor directory
+cd monitor/
+git checkout master
+chmod +x *.sh
